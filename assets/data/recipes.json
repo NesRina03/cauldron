@@ -1,0 +1,344 @@
+[
+  {
+    "id": "potion_001",
+    "name": "Phoenix Fire Brew",
+    "realName": "Spicy Ginger Shot",
+    "category": "elixir",
+    "moods": ["energized", "tired"],
+    "difficulty": "novice",
+    "prepTimeMinutes": 5,
+    "servings": 1,
+    "description": "A fiery elixir to awaken your inner phoenix and ignite your energy for the day ahead.",
+    "ingredients": [
+      {
+        "id": "ing_001",
+        "name": "Fresh Ginger",
+        "amount": "2 inches",
+        "substitutes": ["Ginger powder (1 tsp)"],
+        "isInPantry": false
+      },
+      {
+        "id": "ing_002",
+        "name": "Lemon",
+        "amount": "1 whole",
+        "substitutes": ["Lime"],
+        "isInPantry": false
+      },
+      {
+        "id": "ing_003",
+        "name": "Honey",
+        "amount": "1 tbsp",
+        "substitutes": ["Maple syrup", "Agave nectar"],
+        "isInPantry": false
+      }
+    ],
+    "steps": [
+      {
+        "number": 1,
+        "instruction": "Peel and roughly chop the fresh ginger into small pieces.",
+        "durationMinutes": null
+      },
+      {
+        "number": 2,
+        "instruction": "Juice the lemon into a small bowl.",
+        "durationMinutes": null
+      },
+      {
+        "number": 3,
+        "instruction": "Blend ginger, lemon juice, and honey until smooth. Strain if desired.",
+        "durationMinutes": 2
+      },
+      {
+        "number": 4,
+        "instruction": "Serve immediately and feel the phoenix energy rise!",
+        "durationMinutes": null
+      }
+    ],
+    "benefits": ["Energy Boost", "Immune Support", "Digestive Aid"],
+    "imageUrl": null,
+    "isFavorite": false,
+    "isCached": true
+  },
+  {
+    "id": "potion_002",
+    "name": "Moonlight Serenity",
+    "realName": "Chamomile Lavender Tea",
+    "category": "drink",
+    "moods": ["calm", "peaceful", "tired"],
+    "difficulty": "novice",
+    "prepTimeMinutes": 8,
+    "servings": 1,
+    "description": "A soothing elixir blessed by moonlight, perfect for unwinding after a long day.",
+    "ingredients": [
+      {
+        "id": "ing_004",
+        "name": "Chamomile Tea Bag",
+        "amount": "1",
+        "substitutes": ["Loose chamomile (1 tsp)"],
+        "isInPantry": false
+      },
+      {
+        "id": "ing_005",
+        "name": "Dried Lavender",
+        "amount": "1/2 tsp",
+        "substitutes": ["Lavender tea bag"],
+        "isInPantry": false
+      },
+      {
+        "id": "ing_003",
+        "name": "Honey",
+        "amount": "1 tsp",
+        "substitutes": ["Maple syrup"],
+        "isInPantry": false
+      },
+      {
+        "id": "ing_006",
+        "name": "Hot Water",
+        "amount": "1 cup",
+        "substitutes": [],
+        "isInPantry": true
+      }
+    ],
+    "steps": [
+      {
+        "number": 1,
+        "instruction": "Boil water and pour into your favorite mug.",
+        "durationMinutes": null
+      },
+      {
+        "number": 2,
+        "instruction": "Add chamomile tea bag and dried lavender to the hot water.",
+        "durationMinutes": null
+      },
+      {
+        "number": 3,
+        "instruction": "Let steep in silence, allowing the moonlight essence to infuse.",
+        "durationMinutes": 5
+      },
+      {
+        "number": 4,
+        "instruction": "Remove tea bag, stir in honey, and sip slowly while breathing deeply.",
+        "durationMinutes": null
+      }
+    ],
+    "benefits": ["Relaxation", "Sleep Aid", "Stress Relief"],
+    "imageUrl": null,
+    "isFavorite": false,
+    "isCached": true
+  },
+  {
+    "id": "potion_003",
+    "name": "Starlight Focus Elixir",
+    "realName": "Matcha Latte",
+    "category": "drink",
+    "moods": ["inspired", "energized"],
+    "difficulty": "apprentice",
+    "prepTimeMinutes": 10,
+    "servings": 1,
+    "description": "Channeling the clarity of distant stars, this potion sharpens your mind and enhances concentration.",
+    "ingredients": [
+      {
+        "id": "ing_007",
+        "name": "Matcha Powder",
+        "amount": "1 tsp",
+        "substitutes": ["Green tea (2 bags)"],
+        "isInPantry": false
+      },
+      {
+        "id": "ing_008",
+        "name": "Milk",
+        "amount": "1 cup",
+        "substitutes": ["Almond milk", "Oat milk", "Coconut milk"],
+        "isInPantry": false
+      },
+      {
+        "id": "ing_003",
+        "name": "Honey",
+        "amount": "1 tbsp",
+        "substitutes": ["Maple syrup", "Agave"],
+        "isInPantry": false
+      },
+      {
+        "id": "ing_009",
+        "name": "Vanilla Extract",
+        "amount": "1/4 tsp",
+        "substitutes": [],
+        "isInPantry": false
+      }
+    ],
+    "steps": [
+      {
+        "number": 1,
+        "instruction": "Sift matcha powder into a small bowl to remove clumps.",
+        "durationMinutes": null
+      },
+      {
+        "number": 2,
+        "instruction": "Add 2 tablespoons of hot water and whisk vigorously until frothy.",
+        "durationMinutes": 1
+      },
+      {
+        "number": 3,
+        "instruction": "Heat milk in a saucepan until steaming but not boiling.",
+        "durationMinutes": 3
+      },
+      {
+        "number": 4,
+        "instruction": "Whisk honey and vanilla into the warm milk.",
+        "durationMinutes": null
+      },
+      {
+        "number": 5,
+        "instruction": "Pour matcha mixture into a mug, then add the milk while stirring gently.",
+        "durationMinutes": null
+      }
+    ],
+    "benefits": ["Focus", "Energy Boost", "Antioxidants"],
+    "imageUrl": null,
+    "isFavorite": false,
+    "isCached": true
+  },
+  {
+    "id": "potion_004",
+    "name": "Warrior's Strength Tonic",
+    "realName": "Protein Smoothie",
+    "category": "drink",
+    "moods": ["strong", "energized"],
+    "difficulty": "novice",
+    "prepTimeMinutes": 5,
+    "servings": 1,
+    "description": "Fortify your body with this powerful blend, favored by warriors before battle.",
+    "ingredients": [
+      {
+        "id": "ing_010",
+        "name": "Banana",
+        "amount": "1 large",
+        "substitutes": ["Mango chunks"],
+        "isInPantry": false
+      },
+      {
+        "id": "ing_011",
+        "name": "Protein Powder",
+        "amount": "1 scoop",
+        "substitutes": ["Greek yogurt (1/2 cup)"],
+        "isInPantry": false
+      },
+      {
+        "id": "ing_012",
+        "name": "Peanut Butter",
+        "amount": "1 tbsp",
+        "substitutes": ["Almond butter"],
+        "isInPantry": false
+      },
+      {
+        "id": "ing_008",
+        "name": "Milk",
+        "amount": "1 cup",
+        "substitutes": ["Almond milk", "Water"],
+        "isInPantry": false
+      },
+      {
+        "id": "ing_013",
+        "name": "Ice",
+        "amount": "1/2 cup",
+        "substitutes": [],
+        "isInPantry": true
+      }
+    ],
+    "steps": [
+      {
+        "number": 1,
+        "instruction": "Add all ingredients to a blender.",
+        "durationMinutes": null
+      },
+      {
+        "number": 2,
+        "instruction": "Blend on high speed until completely smooth and creamy.",
+        "durationMinutes": 2
+      },
+      {
+        "number": 3,
+        "instruction": "Pour into a glass and drink within 30 minutes for maximum potency.",
+        "durationMinutes": null
+      }
+    ],
+    "benefits": ["Muscle Recovery", "Energy Boost", "Protein"],
+    "imageUrl": null,
+    "isFavorite": false,
+    "isCached": true
+  },
+  {
+    "id": "potion_005",
+    "name": "Midnight Comfort Cocoa",
+    "realName": "Hot Chocolate",
+    "category": "drink",
+    "moods": ["calm", "joyful", "tired"],
+    "difficulty": "novice",
+    "prepTimeMinutes": 7,
+    "servings": 1,
+    "description": "A warm embrace in liquid form, this potion wraps you in comfort and sweetness.",
+    "ingredients": [
+      {
+        "id": "ing_014",
+        "name": "Cocoa Powder",
+        "amount": "2 tbsp",
+        "substitutes": ["Dark chocolate (chopped)"],
+        "isInPantry": false
+      },
+      {
+        "id": "ing_015",
+        "name": "Sugar",
+        "amount": "1 tbsp",
+        "substitutes": ["Honey", "Maple syrup"],
+        "isInPantry": false
+      },
+      {
+        "id": "ing_008",
+        "name": "Milk",
+        "amount": "1 cup",
+        "substitutes": ["Coconut milk", "Oat milk"],
+        "isInPantry": false
+      },
+      {
+        "id": "ing_009",
+        "name": "Vanilla Extract",
+        "amount": "1/4 tsp",
+        "substitutes": [],
+        "isInPantry": false
+      },
+      {
+        "id": "ing_016",
+        "name": "Pinch of Salt",
+        "amount": "1 pinch",
+        "substitutes": [],
+        "isInPantry": true
+      }
+    ],
+    "steps": [
+      {
+        "number": 1,
+        "instruction": "In a small saucepan, whisk together cocoa powder, sugar, and a splash of milk until smooth.",
+        "durationMinutes": null
+      },
+      {
+        "number": 2,
+        "instruction": "Add remaining milk and heat over medium, stirring frequently.",
+        "durationMinutes": 4
+      },
+      {
+        "number": 3,
+        "instruction": "Once steaming (not boiling), remove from heat and stir in vanilla and salt.",
+        "durationMinutes": null
+      },
+      {
+        "number": 4,
+        "instruction": "Pour into your coziest mug and top with marshmallows if desired.",
+        "durationMinutes": null
+      }
+    ],
+    "benefits": ["Mood Lift", "Comfort", "Warmth"],
+    "imageUrl": null,
+    "isFavorite": false,
+    "isCached": true
+  }
+]
