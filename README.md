@@ -1,5 +1,23 @@
 
+
 # Cauldron: Smart Recipe App — Caching Algorithms Deep Dive
+
+**This project was developed as part of the BuildIT competition, an internal mini-hackathon organized by the IT section of Micro Club.**
+
+**Team:** Build_X  
+**Mentor:** Amine Heddouche
+---
+
+## Future Fixes and Enhancements
+
+- Add more robust error handling and user feedback for network/API failures
+- Implement advanced caching strategies (e.g., LRU/LFU) for larger datasets
+- Add user authentication and cloud sync for recipes and preferences
+- Improve accessibility and localization support
+- Enhance UI/UX with more animations and onboarding
+- Add support for push notifications and scheduled reminders
+- Integrate more external recipe APIs and allow user-submitted recipes
+- Optimize for performance and battery usage
 
 
 ## Concept Deep Dive: Caching Algorithms
