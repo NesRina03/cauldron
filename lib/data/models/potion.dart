@@ -3,7 +3,7 @@ import 'mood.dart';
 
 enum PotionCategory {
   drink,
-  snack,
+  dessert,
   meal,
   elixir;
 
@@ -11,8 +11,8 @@ enum PotionCategory {
     switch (this) {
       case PotionCategory.drink:
         return 'Drink';
-      case PotionCategory.snack:
-        return 'Snack';
+      case PotionCategory.dessert:
+        return 'Dessert';
       case PotionCategory.meal:
         return 'Meal';
       case PotionCategory.elixir:

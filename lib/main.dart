@@ -9,6 +9,11 @@ import 'presentation/screens/onboarding/onboarding_screen.dart';
 import 'presentation/screens/home/home_screen.dart';
 // import 'presentation/widgets/navigation/bottom_nav_bar.dart';
 
+// For widget tests compatibility
+class MyApp extends CauldronApp {
+  const MyApp({super.key});
+}
+
 void main() {
   runApp(const CauldronApp());
 }
@@ -25,19 +30,21 @@ class CauldronApp extends StatelessWidget {
         ChangeNotifierProvider(create: (_) => PotionProvider()),
         ChangeNotifierProvider(create: (_) => ThemeProvider()),
       ],
-      child: MaterialApp(
-        title: 'Cauldron',
-        theme: ThemeProvider.lightTheme,
-        darkTheme: ThemeProvider.darkTheme,
-        themeMode: ThemeMode.system,
-        initialRoute: '/splash',
-        routes: {
-          '/splash': (context) => const SplashScreen(),
-          '/onboarding': (context) => const OnboardingScreen(),
-          '/home': (context) => const HomeScreen(),
-        },
-        // If you want to use a custom bottom nav bar, you can set home:
-        // home: BottomNavBar(),
+      child: Consumer<ThemeProvider>(
+        builder: (context, themeProvider, _) => MaterialApp(
+          title: 'Cauldron',
+          theme: ThemeProvider.lightTheme,
+          darkTheme: ThemeProvider.darkTheme,
+          themeMode: themeProvider.themeMode,
+          initialRoute: '/splash',
+          routes: {
+            '/splash': (context) => const SplashScreen(),
+            '/onboarding': (context) => const OnboardingScreen(),
+            '/home': (context) => const HomeScreen(),
+          },
+          // If you want to use a custom bottom nav bar, you can set home:
+          // home: BottomNavBar(),
+        ),
       ),
     );
   }

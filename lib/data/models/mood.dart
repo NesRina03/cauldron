@@ -27,21 +27,6 @@ enum Mood {
   }
 
   String get emoji {
-    switch (this) {
-      case Mood.energized:
-        return '⚡';
-      case Mood.calm:
-        return '🌙';
-      case Mood.inspired:
-        return '✨';
-      case Mood.strong:
-        return '💪';
-      case Mood.joyful:
-        return '🌸';
-      case Mood.tired:
-        return '😴';
-      case Mood.peaceful:
-        return '💙';
-    }
+    return '';
   }
 }

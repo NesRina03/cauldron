@@ -12,12 +12,11 @@ class AppTheme {
       primary: AppColors.goldPrimary,
       secondary: AppColors.lavender,
       surface: AppColors.darkSurface,
-      background: AppColors.darkPrimary,
+      // background is deprecated, use surface instead
       error: AppColors.error,
       onPrimary: AppColors.darkPrimary,
       onSecondary: AppColors.darkPrimary,
       onSurface: AppColors.textPrimary,
-      onBackground: AppColors.textPrimary,
       onError: AppColors.textPrimary,
     ),
     cardTheme: CardThemeData(
@@ -65,12 +64,11 @@ class AppTheme {
       primary: AppColors.goldPrimaryLight,
       secondary: AppColors.lavenderDark,
       surface: AppColors.lightSurface,
-      background: AppColors.lightPrimary,
+      // background is deprecated, use surface instead
       error: AppColors.errorLight,
       onPrimary: AppColors.textPrimaryLight,
       onSecondary: AppColors.textPrimaryLight,
       onSurface: AppColors.textPrimaryLight,
-      onBackground: AppColors.textPrimaryLight,
       onError: AppColors.textPrimary,
     ),
     cardTheme: CardThemeData(

@@ -29,23 +29,18 @@ class IngredientsList extends StatelessWidget {
         ),
         const SizedBox(height: 12),
         ...ingredients.map((ingredient) {
-          final hasIngredient = ingredient != null
-              ? pantryProvider.hasIngredient(ingredient.id)
-              : false;
+          final hasIngredient = pantryProvider.hasIngredient(ingredient.id);
 
           return _IngredientItem(
             ingredient: ingredient,
             hasIngredient: hasIngredient,
             isDark: isDark,
             onToggle: () {
-              if (ingredient != null) {
-                pantryProvider.toggleIngredient(ingredient.id);
-              }
+              pantryProvider.toggleIngredient(ingredient.id);
             },
-            onShowSubstitutes:
-                ingredient != null && ingredient.substitutes.isNotEmpty
-                    ? () => _showSubstitutesModal(context, ingredient, isDark)
-                    : null,
+            onShowSubstitutes: ingredient.substitutes.isNotEmpty
+                ? () => _showSubstitutesModal(context, ingredient, isDark)
+                : null,
           );
         }).toList(),
       ],
@@ -178,7 +173,10 @@ class _IngredientItem extends StatelessWidget {
                 ),
                 const SizedBox(height: 2),
                 Text(
-                  ingredient.amount,
+                  (ingredient.quantity > 0
+                          ? ingredient.quantity.toString()
+                          : '') +
+                      (ingredient.unit.isNotEmpty ? ' ${ingredient.unit}' : ''),
                   style: AppTextStyles.bodySmall(
                     color: isDark ? AppColors.lavender : AppColors.lavenderDark,
                   ),

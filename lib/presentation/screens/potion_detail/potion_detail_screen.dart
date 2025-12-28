@@ -5,9 +5,12 @@ import '../../../config/theme/app_text_styles.dart';
 import '../../../data/models/potion.dart';
 import '../../../providers/potion_provider.dart';
 import '../../widgets/common/custom_button.dart';
+
 import 'widgets/ingredients_list.dart';
+import 'widgets/allergy_warning.dart';
 import 'widgets/brewing_steps.dart';
 import '../brewing/brewing_screen.dart';
+import '../profile/allergies_preferences_screen.dart' show allergyOptions;
 
 class PotionDetailScreen extends StatelessWidget {
   final Potion potion;
@@ -33,7 +36,8 @@ class PotionDetailScreen extends StatelessWidget {
               SliverAppBar(
                 expandedHeight: 280,
                 pinned: true,
-                backgroundColor: isDark ? AppColors.darkPrimary : AppColors.lightPrimary,
+                backgroundColor:
+                    isDark ? AppColors.darkPrimary : AppColors.lightPrimary,
                 leading: IconButton(
                   icon: Container(
                     padding: const EdgeInsets.all(8),
@@ -54,8 +58,12 @@ class PotionDetailScreen extends StatelessWidget {
                         color: Colors.black.withOpacity(0.5),
                       ),
                       child: Icon(
-                        currentPotion.isFavorite ? Icons.favorite : Icons.favorite_border,
-                        color: currentPotion.isFavorite ? AppColors.goldPrimary : Colors.white,
+                        currentPotion.isFavorite
+                            ? Icons.favorite
+                            : Icons.favorite_border,
+                        color: currentPotion.isFavorite
+                            ? AppColors.goldPrimary
+                            : Colors.white,
                       ),
                     ),
                     onPressed: () {
@@ -64,19 +72,42 @@ class PotionDetailScreen extends StatelessWidget {
                   ),
                 ],
                 flexibleSpace: FlexibleSpaceBar(
-                  background: Container(
-                    decoration: BoxDecoration(
-                      gradient: LinearGradient(
-                        begin: Alignment.topLeft,
-                        end: Alignment.bottomRight,
-                        colors: [
-                          AppColors.darkSecondary,
-                          AppColors.darkElevated,
-                        ],
-                      ),
-                    ),
-                    child: Stack(
-                      children: [
+                  background: Stack(
+                    fit: StackFit.expand,
+                    children: [
+                      if (currentPotion.imageUrl != null &&
+                          currentPotion.imageUrl!.isNotEmpty)
+                        ClipRRect(
+                          borderRadius: const BorderRadius.vertical(
+                              bottom: Radius.circular(32)),
+                          child: Image.network(
+                            currentPotion.imageUrl!,
+                            fit: BoxFit.cover,
+                            errorBuilder: (context, error, stackTrace) =>
+                                Center(
+                              child: Icon(
+                                Icons.broken_image,
+                                size: 100,
+                                color: AppColors.goldPrimary.withOpacity(0.3),
+                              ),
+                            ),
+                            loadingBuilder: (context, child, loadingProgress) {
+                              if (loadingProgress == null) return child;
+                              return Center(
+                                child: CircularProgressIndicator(
+                                  value: loadingProgress.expectedTotalBytes !=
+                                          null
+                                      ? loadingProgress.cumulativeBytesLoaded /
+                                          (loadingProgress.expectedTotalBytes ??
+                                              1)
+                                      : null,
+                                  color: AppColors.goldPrimary,
+                                ),
+                              );
+                            },
+                          ),
+                        )
+                      else
                         Center(
                           child: Icon(
                             Icons.science_outlined,
@@ -84,27 +115,29 @@ class PotionDetailScreen extends StatelessWidget {
                             color: AppColors.goldPrimary.withOpacity(0.3),
                           ),
                         ),
-                        // Gradient overlay
-                        Positioned(
-                          bottom: 0,
-                          left: 0,
-                          right: 0,
-                          height: 100,
-                          child: Container(
-                            decoration: BoxDecoration(
-                              gradient: LinearGradient(
-                                begin: Alignment.topCenter,
-                                end: Alignment.bottomCenter,
-                                colors: [
-                                  Colors.transparent,
-                                  (isDark ? AppColors.darkPrimary : AppColors.lightPrimary).withOpacity(0.9),
-                                ],
-                              ),
+                      // Gradient overlay
+                      Positioned(
+                        bottom: 0,
+                        left: 0,
+                        right: 0,
+                        height: 100,
+                        child: Container(
+                          decoration: BoxDecoration(
+                            gradient: LinearGradient(
+                              begin: Alignment.topCenter,
+                              end: Alignment.bottomCenter,
+                              colors: [
+                                Colors.transparent,
+                                (isDark
+                                        ? AppColors.darkPrimary
+                                        : AppColors.lightPrimary)
+                                    .withOpacity(0.9),
+                              ],
                             ),
                           ),
                         ),
-                      ],
-                    ),
+                      ),
+                    ],
                   ),
                 ),
               ),
@@ -113,8 +146,10 @@ class PotionDetailScreen extends StatelessWidget {
               SliverToBoxAdapter(
                 child: Container(
                   decoration: BoxDecoration(
-                    color: isDark ? AppColors.darkPrimary : AppColors.lightPrimary,
-                    borderRadius: const BorderRadius.vertical(top: Radius.circular(24)),
+                    color:
+                        isDark ? AppColors.darkPrimary : AppColors.lightPrimary,
+                    borderRadius:
+                        const BorderRadius.vertical(top: Radius.circular(24)),
                   ),
                   child: Padding(
                     padding: const EdgeInsets.all(24),
@@ -125,19 +160,23 @@ class PotionDetailScreen extends StatelessWidget {
                         Text(
                           currentPotion.name,
                           style: AppTextStyles.h1(
-                            color: isDark ? AppColors.textPrimary : AppColors.textPrimaryLight,
+                            color: isDark
+                                ? AppColors.textPrimary
+                                : AppColors.textPrimaryLight,
                           ),
                         ),
                         const SizedBox(height: 4),
                         Text(
                           '(${currentPotion.realName})',
                           style: AppTextStyles.body(
-                            color: isDark ? AppColors.lavender : AppColors.lavenderDark,
+                            color: isDark
+                                ? AppColors.lavender
+                                : AppColors.lavenderDark,
                           ).copyWith(fontStyle: FontStyle.italic),
                         ),
-                        
+
                         const SizedBox(height: 12),
-                        
+
                         // Metadata
                         Row(
                           children: [
@@ -154,41 +193,55 @@ class PotionDetailScreen extends StatelessWidget {
                             Text(
                               '•',
                               style: TextStyle(
-                                color: isDark ? AppColors.lavender : AppColors.lavenderDark,
+                                color: isDark
+                                    ? AppColors.lavender
+                                    : AppColors.lavenderDark,
                               ),
                             ),
                             const SizedBox(width: 8),
                             Text(
                               '${currentPotion.prepTimeMinutes} min',
                               style: AppTextStyles.body(
-                                color: isDark ? AppColors.lavender : AppColors.lavenderDark,
+                                color: isDark
+                                    ? AppColors.lavender
+                                    : AppColors.lavenderDark,
                               ),
                             ),
                             const SizedBox(width: 8),
                             Text(
                               '•',
                               style: TextStyle(
-                                color: isDark ? AppColors.lavender : AppColors.lavenderDark,
+                                color: isDark
+                                    ? AppColors.lavender
+                                    : AppColors.lavenderDark,
                               ),
                             ),
                             const SizedBox(width: 8),
                             Text(
                               '${currentPotion.servings} serving${currentPotion.servings > 1 ? 's' : ''}',
                               style: AppTextStyles.body(
-                                color: isDark ? AppColors.lavender : AppColors.lavenderDark,
+                                color: isDark
+                                    ? AppColors.lavender
+                                    : AppColors.lavenderDark,
                               ),
                             ),
                             const SizedBox(width: 8),
                             Container(
-                              padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                              padding: const EdgeInsets.symmetric(
+                                  horizontal: 8, vertical: 4),
                               decoration: BoxDecoration(
-                                color: (isDark ? AppColors.lavender : AppColors.lavenderDark).withOpacity(0.2),
+                                color: (isDark
+                                        ? AppColors.lavender
+                                        : AppColors.lavenderDark)
+                                    .withOpacity(0.2),
                                 borderRadius: BorderRadius.circular(8),
                               ),
                               child: Text(
                                 currentPotion.category.displayName,
                                 style: AppTextStyles.caption(
-                                  color: isDark ? AppColors.lavender : AppColors.lavenderDark,
+                                  color: isDark
+                                      ? AppColors.lavender
+                                      : AppColors.lavenderDark,
                                 ),
                               ),
                             ),
@@ -197,11 +250,41 @@ class PotionDetailScreen extends StatelessWidget {
 
                         const SizedBox(height: 20),
 
+                        // User Allergy and Preference Tags
+                        Builder(
+                          builder: (context) {
+                            final tags = context
+                                .watch<PotionProvider>()
+                                .getUserTagsForRecipe(currentPotion.id);
+                            if (tags.isEmpty) return const SizedBox.shrink();
+                            return Wrap(
+                              spacing: 8,
+                              runSpacing: 8,
+                              children: tags
+                                  .map((tag) => Chip(
+                                        label: Text(tag),
+                                        backgroundColor:
+                                            allergyOptions.contains(tag)
+                                                ? Colors.red.withOpacity(0.2)
+                                                : Colors.green.withOpacity(0.2),
+                                        labelStyle: TextStyle(
+                                          color: allergyOptions.contains(tag)
+                                              ? Colors.red
+                                              : Colors.green,
+                                        ),
+                                      ))
+                                  .toList(),
+                            );
+                          },
+                        ),
+
                         // Description
                         Text(
                           currentPotion.description,
                           style: AppTextStyles.bodyLarge(
-                            color: isDark ? AppColors.textSecondary : AppColors.textSecondaryLight,
+                            color: isDark
+                                ? AppColors.textSecondary
+                                : AppColors.textSecondaryLight,
                           ),
                         ),
 
@@ -212,29 +295,42 @@ class PotionDetailScreen extends StatelessWidget {
                           Text(
                             'Benefits',
                             style: AppTextStyles.h3(
-                              color: isDark ? AppColors.textPrimary : AppColors.textPrimaryLight,
+                              color: isDark
+                                  ? AppColors.textPrimary
+                                  : AppColors.textPrimaryLight,
                             ),
                           ),
                           const SizedBox(height: 12),
                           Wrap(
                             spacing: 8,
                             runSpacing: 8,
-                            children: currentPotion.benefits.map((benefit) => Container(
-                              padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
-                              decoration: BoxDecoration(
-                                color: (isDark ? AppColors.lavender : AppColors.lavenderDark).withOpacity(0.2),
-                                borderRadius: BorderRadius.circular(8),
-                              ),
-                              child: Text(
-                                benefit,
-                                style: AppTextStyles.caption(
-                                  color: isDark ? AppColors.lavender : AppColors.lavenderDark,
-                                ),
-                              ),
-                            )).toList(),
+                            children: currentPotion.benefits
+                                .map((benefit) => Container(
+                                      padding: const EdgeInsets.symmetric(
+                                          horizontal: 12, vertical: 6),
+                                      decoration: BoxDecoration(
+                                        color: (isDark
+                                                ? AppColors.lavender
+                                                : AppColors.lavenderDark)
+                                            .withOpacity(0.2),
+                                        borderRadius: BorderRadius.circular(8),
+                                      ),
+                                      child: Text(
+                                        benefit,
+                                        style: AppTextStyles.caption(
+                                          color: isDark
+                                              ? AppColors.lavender
+                                              : AppColors.lavenderDark,
+                                        ),
+                                      ),
+                                    ))
+                                .toList(),
                           ),
                           const SizedBox(height: 24),
                         ],
+
+                        // Allergy Warning
+                        AllergyWarning(ingredients: currentPotion.ingredients),
 
                         // Ingredients
                         IngredientsList(ingredients: currentPotion.ingredients),
@@ -261,7 +357,9 @@ class PotionDetailScreen extends StatelessWidget {
             child: Container(
               padding: const EdgeInsets.all(16),
               decoration: BoxDecoration(
-                color: (isDark ? AppColors.darkElevated : AppColors.lightSurface).withOpacity(0.95),
+                color:
+                    (isDark ? AppColors.darkElevated : AppColors.lightSurface)
+                        .withOpacity(0.95),
                 boxShadow: [
                   BoxShadow(
                     color: Colors.black.withOpacity(0.1),
@@ -276,7 +374,8 @@ class PotionDetailScreen extends StatelessWidget {
                   onPressed: () {
                     Navigator.of(context).push(
                       MaterialPageRoute(
-                        builder: (context) => BrewingScreen(potion: currentPotion),
+                        builder: (context) =>
+                            BrewingScreen(potion: currentPotion),
                       ),
                     );
                   },

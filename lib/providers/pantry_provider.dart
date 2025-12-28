@@ -16,21 +16,25 @@ class PantryProvider extends ChangeNotifier {
 
   Future<void> _loadPantry() async {
     final prefs = await SharedPreferences.getInstance();
-    final pantryJson = prefs.getString('pantry');
+    final pantryJson = prefs.getString('pantry_full');
     if (pantryJson != null) {
-      _pantryIngredients = Set<String>.from(json.decode(pantryJson));
-    }
-    // For demo, just create Ingredient objects from IDs
-    _items.clear();
-    for (final id in _pantryIngredients) {
-      _items.add(Ingredient(id: id, name: id, amount: '', isInPantry: true));
+      final decoded = json.decode(pantryJson) as List<dynamic>;
+      _items.clear();
+      _items.addAll(
+          decoded.map((e) => Ingredient.fromJson(e as Map<String, dynamic>)));
+      _pantryIngredients =
+          _items.where((i) => i.isInPantry).map((i) => i.id).toSet();
+    } else {
+      _items.clear();
+      _pantryIngredients.clear();
     }
     notifyListeners();
   }
 
   Future<void> _savePantry() async {
     final prefs = await SharedPreferences.getInstance();
-    await prefs.setString('pantry', json.encode(_pantryIngredients.toList()));
+    await prefs.setString(
+        'pantry_full', json.encode(_items.map((e) => e.toJson()).toList()));
   }
 
   Future<void> toggleIngredient(String ingredientId) async {
@@ -50,7 +54,11 @@ class PantryProvider extends ChangeNotifier {
   Future<void> addIngredient(String ingredientId) async {
     _pantryIngredients.add(ingredientId);
     _items.add(Ingredient(
-        id: ingredientId, name: ingredientId, amount: '', isInPantry: true));
+        id: ingredientId,
+        name: ingredientId,
+        quantity: 0,
+        unit: '',
+        isInPantry: true));
     await _savePantry();
     notifyListeners();
   }
@@ -63,12 +71,16 @@ class PantryProvider extends ChangeNotifier {
   }
 
   Future<void> addItem(Ingredient ingredient) async {
-    if (!_pantryIngredients.contains(ingredient.id)) {
-      _pantryIngredients.add(ingredient.id);
-      _items.add(ingredient.copyWith(isInPantry: true));
-      await _savePantry();
-      notifyListeners();
+    _pantryIngredients.add(ingredient.id);
+    final idx = _items.indexWhere((item) => item.id == ingredient.id);
+    final isAvailable = ingredient.quantity > 0;
+    if (idx != -1) {
+      _items[idx] = ingredient.copyWith(isInPantry: isAvailable);
+    } else {
+      _items.add(ingredient.copyWith(isInPantry: isAvailable));
     }
+    await _savePantry();
+    notifyListeners();
   }
 
   Future<void> removeItem(Ingredient ingredient) async {

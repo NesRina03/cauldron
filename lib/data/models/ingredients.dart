@@ -1,45 +1,52 @@
 class Ingredient {
   final String id;
   final String name;
-  final String amount;
+  final double quantity;
+  final String unit;
   final List<String> substitutes;
   final bool isInPantry;
 
   Ingredient({
     required this.id,
     required this.name,
-    required this.amount,
+    this.quantity = 0,
+    this.unit = '',
     this.substitutes = const [],
     this.isInPantry = false,
   });
 
   Map<String, dynamic> toJson() => {
-    'id': id,
-    'name': name,
-    'amount': amount,
-    'substitutes': substitutes,
-    'isInPantry': isInPantry,
-  };
+        'id': id,
+        'name': name,
+        'quantity': quantity,
+        'unit': unit,
+        'substitutes': substitutes,
+        'isInPantry': isInPantry,
+      };
 
   factory Ingredient.fromJson(Map<String, dynamic> json) => Ingredient(
-    id: json['id'] as String,
-    name: json['name'] as String,
-    amount: json['amount'] as String,
-    substitutes: (json['substitutes'] as List?)?.cast<String>() ?? [],
-    isInPantry: json['isInPantry'] as bool? ?? false,
-  );
+        id: json['id'] as String,
+        name: json['name'] as String,
+        quantity: (json['quantity'] as num?)?.toDouble() ?? 0,
+        unit: json['unit'] as String? ?? '',
+        substitutes: (json['substitutes'] as List?)?.cast<String>() ?? [],
+        isInPantry: json['isInPantry'] as bool? ?? false,
+      );
 
   Ingredient copyWith({
     String? id,
     String? name,
-    String? amount,
+    double? quantity,
+    String? unit,
     List<String>? substitutes,
     bool? isInPantry,
-  }) => Ingredient(
-    id: id ?? this.id,
-    name: name ?? this.name,
-    amount: amount ?? this.amount,
-    substitutes: substitutes ?? this.substitutes,
-    isInPantry: isInPantry ?? this.isInPantry,
-  );
+  }) =>
+      Ingredient(
+        id: id ?? this.id,
+        name: name ?? this.name,
+        quantity: quantity ?? this.quantity,
+        unit: unit ?? this.unit,
+        substitutes: substitutes ?? this.substitutes,
+        isInPantry: isInPantry ?? this.isInPantry,
+      );
 }
